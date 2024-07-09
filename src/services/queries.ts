@@ -1,17 +1,22 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { getBeans, getInfBeans } from './fetchApi'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { getBeans, getFacts } from './fetchApi'
 
 export const useBeans = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['beans'],
-    queryFn: () => getBeans(1),
+    queryFn: getBeans,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPage) => {
+      const nextPage =
+        lastPage.totalPages !== allPage.length ? allPage.length + 1 : null
+      return nextPage
+    },
   })
 }
-
-export const useInfBeans = () => {
+export const useFacts = () => {
   return useInfiniteQuery({
-    queryKey: ['infbeans'],
-    queryFn: getInfBeans,
+    queryKey: ['facts'],
+    queryFn: getFacts,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPage) => {
       const nextPage =

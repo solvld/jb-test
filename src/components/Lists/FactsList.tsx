@@ -1,11 +1,11 @@
 import { useInView } from 'react-intersection-observer'
-import { useBeans } from '../../services/queries'
-import BeanCard from '../Cards/BeanCard'
+import { useFacts } from '../../services/queries'
 import { useEffect } from 'react'
+import FactCard from '../Cards/FactCard'
 
-const BeansList = () => {
+const FactsList = () => {
   const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useBeans()
+    useFacts()
   const { ref, inView } = useInView()
 
   useEffect(() => {
@@ -18,11 +18,11 @@ const BeansList = () => {
     <>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-52 md:max-w-[890px] m-auto pt-8">
         {data?.pages.map(page =>
-          page.items.map((bean, index) => {
+          page.items.map((item, index) => {
             if (page.items.length == index + 1) {
-              return <BeanCard data={bean} key={bean.beanId} innerRef={ref} />
+              return <FactCard data={item} key={item.factId} innerRef={ref} />
             }
-            return <BeanCard data={bean} key={bean.beanId} />
+            return <FactCard data={item} key={item.factId} />
           }),
         )}
       </div>
@@ -33,4 +33,4 @@ const BeansList = () => {
   )
 }
 
-export default BeansList
+export default FactsList
