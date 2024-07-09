@@ -7,8 +7,9 @@ export default function Header() {
   return (
     <div className="w-full flex justify-center p-4">
       <ul className="flex justify-between list-none text-red-500 w-full max-w-[360px]">
-        {navLinks.map(link => (
+        {navLinks.map((link, i) => (
           <li
+            key={i}
             className="cursor-pointer"
             onClick={() => setParam(link)}
             style={param == link ? { fontWeight: '700' } : {}}

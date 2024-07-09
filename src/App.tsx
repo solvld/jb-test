@@ -1,9 +1,11 @@
+import Header from './components/Header'
+import BeansList from './components/Lists/BaensList'
+
 export default function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-green-700 underline">
-        Hello world!
-      </h1>
-    </>
+    <main>
+      <Header />
+      <BeansList />
+    </main>
   )
 }

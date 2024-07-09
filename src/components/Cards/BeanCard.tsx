@@ -2,10 +2,14 @@ import { Bean } from '../../types'
 
 interface BeanCardProps {
   data: Bean
+  innerRef?: React.Ref<HTMLDivElement>
 }
-const BeanCard = ({ data }: BeanCardProps) => {
+const BeanCard = ({ data, innerRef }: BeanCardProps) => {
   return (
-    <div className="flex justify-between items-center gap-4 max-w-52 flex-col p-4 rounded-2xl border border-red-500 text-red-500">
+    <div
+      ref={innerRef}
+      className="flex justify-between items-center gap-4 max-w-52 flex-col p-4 rounded-2xl border border-red-500 text-red-500"
+    >
       <h1 className="text-center">{data.flavorName}</h1>
       <img
         className="h-auto max-w-44"
