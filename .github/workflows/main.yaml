@@ -16,5 +16,5 @@ jobs:
             
             - name: Build Docker Image
               run: | 
-                docker build -t jbtest:latest
+                docker build -t jbtest:latest .
 
